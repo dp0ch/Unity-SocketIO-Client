@@ -1,6 +1,6 @@
 # Unity SocketIO Client
 A SocketIO client for Unity written in C#.
-It's compatible with the latest version of the SocketIO-Server for node.js (2.0.2) and should be compatible with any other version that leverages the same protocol spec.
+It's compatible with the latest version of the SocketIO server for node.js (2.0.2) and should be compatible with any other version that leverages the same protocol spec.
 
 ## Features
 - Send/Receive SocketIO events
@@ -68,10 +68,12 @@ You can optionally send or receive data with your events. Any data you send from
     
     socket.Emit("multiple-args", "You can also send multiple values", "like so", 42f);
     
+	/*
     class MyCustomJsonClass{
         public string myMember;
     }
-    
+    */
+
     var myData = new MyCustomJsonClass(){
         myMember = "This member will get serialized"
     };
@@ -105,9 +107,11 @@ The `Data` property of the `SocketIOEvent` object that gets passed to the event 
 
 ###### Client (C#)
 ```cs
+	/*
     class MyCustomJsonClass{
         public string myMember;
     }
+	*/
     
     socket.On("some-data", (ev) => {
         string myString = ev.Data[0].ToObject<string>();
