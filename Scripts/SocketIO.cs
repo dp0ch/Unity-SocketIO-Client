@@ -182,7 +182,7 @@
                 synchronizationQueue.Enqueue(() => {
                     List<Action<SocketIOEvent>> handlers;
                     if (eventHandlers.TryGetValue(ev.Name, out handlers)) {
-                        foreach(var handler in handlers) {
+                        foreach(var handler in handlers.ToArray()) { //copy handler list so handlers can call Off();
                             if (handler != null) handler(ev);
                         }
                     }
